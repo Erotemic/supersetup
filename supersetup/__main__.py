@@ -138,8 +138,63 @@ def make_registry(devel_repos):
     return registery
 
 
+def load_devel_repos():
+    # HACK: come up with mechanism to load a list of repos from a file
+    DEVEL_REPOS = [
+        # The util libs
+        {
+            'name': 'kwarray', 'branch': 'dev/0.5.20', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/kwarray.git'},
+        },
+        {
+            'name': 'kwimage', 'branch': 'dev/0.7.13', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/kwimage.git'},
+        },
+        # TODO:
+        # {
+        #     'name': 'kwannot', 'branch': 'dev/0.1.0', 'remote': 'public',
+        #     'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/kwannot.git'},
+        # },
+        {
+            'name': 'kwcoco', 'branch': 'dev/0.2.12', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/kwcoco.git'},
+        },
+        {
+            'name': 'kwplot', 'branch': 'dev/0.4.10', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/kwplot.git'},
+        },
+
+        # Pytorch deployer / exporter
+        {
+            'name': 'liberator', 'branch': 'dev/0.0.2', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:python/liberator.git'},
+        },
+        {
+            'name': 'torch_liberator', 'branch': 'dev/0.1.1', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/torch_liberator.git'},
+        },
+
+        # For example data and CLI
+        {
+            'name': 'scriptconfig', 'branch': 'dev/0.5.9', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:utils/scriptconfig.git'},
+        },
+        {
+            'name': 'ndsampler', 'branch': 'dev/0.6.6', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/ndsampler.git'},
+        },
+
+        # netharn - training harness
+        {
+            'name': 'netharn', 'branch': 'dev/0.5.17', 'remote': 'public',
+            'remotes': {'public': 'git@gitlab.kitware.com:computer-vision/netharn.git'},
+        },
+    ]
+    return DEVEL_REPOS
+
+
 def main():
-    devel_repos = DEVEL_REPOS
+    devel_repos = load_devel_repos()
     registery = make_registry(devel_repos)
 
     only = ub.argval('--only', default=None)
